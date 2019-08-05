@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+<div class="panel panel-default">
+<div class="panel-body"> 
+<table class="table">
+<p class=  'form-control' >
+  <strong>Title:</strong>
+  <%= @post.title  %>
+</p>
+
+<p class=  'form-control' >
+  <strong>Body:</strong>
+  <%= @post.body %>
+</p>
+
+<p class=  'form-control' >
+  <strong>User:</strong>
+  <%= @post.user.email  %>
+</p>
+
+</table>
+ </div>
+</div>
+<div class="panel panel-default">
+<div class="panel-body"> 
+<table class="table">
+
+<h3> add comments </h3>
+
+<thead  >
+  <tr>
+    <th > visitor comments</th>
+  </tr>
+</thead>
+<tbody>
+  <% @post.comments.each do |comment| %>
+    <tr>
+      <td>
+  
+        <%= comment.body %>
+   
+      </td>
+     </td>
+    </tr>
+  <% end %>
+</tbody>
+</table>
+   </div>
+</div>
+</div>
+</div>
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">add comment</div>
+  <div class="panel-body"> 
+
+<%= form_for([@post,@post.comments.build]) do |f| %>
+ 
+
+  <div class="field">
+ 
+    <%= f.text_area :body ,:class => 'form-control' %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit  class:"btn btn-success" %>
+  </div>
+<% end %>
+</div>
+</div>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
